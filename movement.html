@@ -335,7 +335,7 @@
     };
 
     // Construct the URL for the GET request
-    var scriptUrl = 'https://script.google.com/macros/s/AKfycbz6HFUwIWKn1JpGnnIsXmrwRux6RR5PGRxnC675MnIov9nH5J_1kCI-o9YfBJVEYZ_MRw/exec'; // Replace with your Web App URL
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbwbVeL6r8F004JcQkDUzK4pqsMpLsRMarvAJJBBjkR61oXL5tJjjuB3sv_m85wUrgR2MA/exec'; // Replace with your Web App URL
     var queryString = Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
     var url = scriptUrl + '?callback=googleDocCallback&' + queryString;
 
