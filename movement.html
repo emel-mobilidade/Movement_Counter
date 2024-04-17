@@ -273,7 +273,6 @@
     // Collect data from counters
     var data = {
         'wheelchair': document.getElementById('counter-wheelchair').textContent,
-        'ewheelchair': document.getElementById('counter-e-wheelchair').textContent,
         'babytoddlersupported': document.getElementById('counter-baby-toddler-supported').textContent,
         'cane': document.getElementById('counter-cane').textContent,
         'dogwalkingcane': document.getElementById('counter-dog-walking-cane').textContent,
@@ -282,8 +281,8 @@
         'countermale12': document.getElementById('counter-male-12').textContent,
         'counterfemale12': document.getElementById('counter-female-12').textContent,
 
-        'countermale1224': document.getElementById('counter-male-12').textContent,
-        'counterfemale1224': document.getElementById('counter-female-12').textContent,
+        'countermale1224': document.getElementById('counter-male-12-24').textContent,
+        'counterfemale1224': document.getElementById('counter-female-12-24').textContent,
 
         'countermale2564': document.getElementById('counter-male-25-64').textContent,
         'counterfemale2564': document.getElementById('counter-female-25-64').textContent,
@@ -299,7 +298,7 @@
     };
 
     // Construct the URL for the GET request
-    var scriptUrl = 'https://script.google.com/macros/s/AKfycbwbVeL6r8F004JcQkDUzK4pqsMpLsRMarvAJJBBjkR61oXL5tJjjuB3sv_m85wUrgR2MA/exec'; // Replace with your Web App URL
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbwurOfHWUbrleBS-2_dcdH2WX6xJmkdzkZPTKJL9WQhKWse80EiEc3MmU5tEHXUyveomA/exec'; // Replace with your Web App URL
     var queryString = Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
     var url = scriptUrl + '?callback=googleDocCallback&' + queryString;
 
