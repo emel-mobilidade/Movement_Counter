@@ -11,6 +11,7 @@
             padding: 0;
             background: #f4f4f4;
         }
+
         .container {
             display: grid;
             grid-template-columns: repeat(6, 1fr); /* Six columns for all screen sizes */
@@ -18,7 +19,8 @@
             padding: 10px;
             justify-content: center;
         }
-        .small-category, .category {
+        .small-category {
+            grid-column: span 2; /* 3 items per row */
             background: #f2ead7;
             border-radius: 3px;
             padding: 4px;
@@ -28,20 +30,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            height: 80px; /* Fixed height */
+            font-size: 0.5em;
             position: relative;
-            overflow: hidden;
-            align-items: center; /* Center content horizontally */
-        }
-        .small-category {
-            grid-column: span 2; /* 3 items per row */
-            height: 80px; /* Adjusted fixed height for consistency */
-            font-size: 0.8em;
         }
         .small-category img {
-            width: auto;  /* Auto width for maintaining aspect ratio */
-            max-width: 50%;  /* Limiting width to container size */
-            height: auto; /* Auto height for maintaining aspect ratio */
-            max-height: 50%; /* Limiting height to container size */
+            max-width: 100%;
+            height: 150%;
+            margin-bottom: 10px;
+            position: relative;
+            
         }
         .category {
             grid-column: span 3; /* Keeps 2 items per row, but you can adjust this if needed */
@@ -68,62 +66,100 @@
             width: auto;
             z-index: 1; /* Bring the image to the front */
         }
+
         .category .counter, .category div {
-            z-index: 2; /* Ensures text is above the image */
-            padding: 5px;
             position: relative;
+            z-index: 2; /* Ensure the text is above the image */
+            padding: 5px; /* Add some padding around the text */
         }
+
+
+
         .counter {
             font-size: 1.2em;
             margin-bottom: 3px;
         }
+
         .highlighted {
-            background-color: #FCF4DA;
-        }
+        background-color: #FCF4DA; /* Change this color as per your preference */
+    }
+
+
+
+
+
+
         .input-section {
-            grid-column: 1 / -1; /* Span all columns */
-            padding: 5px;
-            margin-top: 5px;
-            gap: 2px;
-            background-color: #f2ead7;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-between;
-        }
-        .input-section textarea, .time-container input {
-            width: 100%;
-            padding: 5px;
-            font-size: 0.8em;
-            resize: none; /* Fix textarea size */
-            border: 1px solid #ccc;
-        }
-        .time-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-size: 0.2em;
-        }
-        .decrement-button {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background-color: #AED9E0;
-            color: #1e456a;
-            border-radius: 5px;
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 3;
-        }
-        .category > div {
-            align-self: flex-end;
-            margin-top: -3px;
-            text-align: right;
-        }
+        grid-column: 1 / -1; /* Span all columns */
+        padding: 5px;
+        margin-top: 5px;
+        gap: 2px;
+        background-color: #f2ead7; /* Match the background color with other elements */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    .input-section textarea {
+        width: 100%; /* Take up 100% of .input-section's width */
+        height: 90%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        font-size: 0.8em;
+        box-sizing: border-box; /* Include padding and border in the width */
+        resize: none; /* Prevent textarea from being resized */
+    }
+
+    .input-section {
+    display: flex;
+    justify-content: space-between;
+    }
+
+    .time-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 0.2em;
+    }
+
+    .time-container input {
+        width: 90%; /* Adjust width as needed */
+        margin-bottom: 10px;
+        font-size: 3.8em;
+        /* Other styling rules as per your requirement */
+    }
+
+    .input-section textarea {
+        width: 100%; /* Adjust as per your layout */
+        /* Keep other existing styles */
+    }
+
+
+
+    .decrement-button {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: #AED9E0; /* Changed color */
+        color: #1e456a;
+        border-radius: 5px; /* Rounded corners */
+        width: 16px; /* Square shape */
+        height: 16px; /* Square shape */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 3; /* To ensure it's above other elements */
+    }
+
+    .category > div {
+        align-self: flex-end; /* Align this specific div to the right */
+        margin-top: -3px; /* Move text up. Adjust as needed */
+        text-align: right; /* Text aligned to the right */
+    }
+
+
+
+
     </style>
     
     
