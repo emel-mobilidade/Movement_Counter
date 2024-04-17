@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movement Counting - Public Life Data Protocol</title>
+    <style>
+        body {
+            font-family: Montserrat, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* Six columns for all screen sizes */
+            gap: 10px;
+            padding: 10px;
+            justify-content: center;
+        }
+        .small-category {
+            grid-column: span 2; /* 3 items per row */
+            background: #f2ead7;
+            border-radius: 3px;
+            padding: 4px;
+            text-align: center;
+            color: #1e456a;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80px; /* Fixed height */
+            font-size: 0.5em;
+            position: relative;
+        }
+        .small-category img {
+            max-width: 100%;
+            height: 150%;
+            margin-bottom: 10px;
+            position: relative;
+            
+        }
+        .category {
+            grid-column: span 3; /* Keeps 2 items per row, but you can adjust this if needed */
+            background: #f2ead7;
+            border-radius: 5px;
+            padding: 1px; /* Reduced padding */
+            text-align: right;
+            color: #1e456a;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Align content to start (left) */
+            font-size: 0.8em; /* Reduced font size */
+            height: 65px; /* Fixed height */
+            position: relative;            
+        }
+
+        .category img {
+            position: absolute;
+            top: -5%;
+            left: 0; /* Align the image to the left */
+            height: 110%;
+            width: auto;
+            z-index: 1; /* Bring the image to the front */
+        }
+
+        .category .counter, .category div {
+            position: relative;
+            z-index: 2; /* Ensure the text is above the image */
+            padding: 5px; /* Add some padding around the text */
+        }
+
+
+
+        .counter {
+            font-size: 1.2em;
+            margin-bottom: 3px;
+        }
+
+        .highlighted {
+        background-color: #FCF4DA; /* Change this color as per your preference */
+    }
+
+
+
+
+
+
+        .input-section {
+        grid-column: 1 / -1; /* Span all columns */
+        padding: 5px;
+        margin-top: 5px;
+        gap: 2px;
+        background-color: #f2ead7; /* Match the background color with other elements */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    .input-section textarea {
+        width: 100%; /* Take up 100% of .input-section's width */
+        height: 90%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        font-size: 0.8em;
+        box-sizing: border-box; /* Include padding and border in the width */
+        resize: none; /* Prevent textarea from being resized */
+    }
+
+    .input-section {
+    display: flex;
+    justify-content: space-between;
+    }
+
+    .time-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 0.2em;
+    }
+
+    .time-container input {
+        width: 90%; /* Adjust width as needed */
+        margin-bottom: 10px;
+        font-size: 3.8em;
+        /* Other styling rules as per your requirement */
+    }
+
+    .input-section textarea {
+        width: 100%; /* Adjust as per your layout */
+        /* Keep other existing styles */
+    }
+
+
+
+    .decrement-button {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: #AED9E0; /* Changed color */
+        color: #1e456a;
+        border-radius: 5px; /* Rounded corners */
+        width: 16px; /* Square shape */
+        height: 16px; /* Square shape */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 3; /* To ensure it's above other elements */
+    }
+
+    .category > div {
+        align-self: flex-end; /* Align this specific div to the right */
+        margin-top: -3px; /* Move text up. Adjust as needed */
+        text-align: right; /* Text aligned to the right */
+    }
+
+
+
+
+    </style>
+    
+    
+
+    
+
+    
+
+    
+</head>
+<body>
+
+    </script>
+</body>
+</html>
+
+
+
+<div class="container">
+    <!-- Cadeira de Rodas -->
+    <div class="small-category" onclick="incrementCounter('counter-wheelchair')">
+        <div class="decrement-button" onclick="decrementCounter('counter-wheelchair', event)">-</div>
+        <img src="svg-export/wheelchair.svg" alt="Baby/Toddler Supported">
+        <div id="counter-wheelchair" class="counter">0</div>
+        <div>Cadeira de Rodas</div>
+    </div>
+
+    <!-- Cadeira de Rodas Elétrica -->
+    <div class="small-category" onclick="incrementCounter('counter-e-wheelchair')">
+        <div class="decrement-button" onclick="decrementCounter('counter-e-wheelchair', event)">-</div>
+        <img src="svg-export/e_wheelchair.svg" alt="Up to 5 Supported">
+        <div id="counter-e-wheelchair" class="counter">0</div>
+        <div>Cadeira de Rodas Elétrica</div>
+    </div>
+
+    <!-- Criança carrinho bebé -->
+    <div class="small-category" onclick="incrementCounter('counter-baby-toddler-supported')">
+        <div class="decrement-button" onclick="decrementCounter('counter-baby-toddler-supported', event)">-</div>
+        <img src="svg-export/Baby-Toddler Supported.svg" alt="Baby/Toddler Supported">
+        <div id="counter-baby-toddler-supported" class="counter">0</div>
+        <div>Criança carrinho bebé</div>
+    </div>
+
+    <!-- Bengala -->
+    <div class="small-category" onclick="incrementCounter('counter-cane')">
+        <div class="decrement-button" onclick="decrementCounter('counter-cane', event)">-</div>
+        <img src="svg-export/cane2.svg" alt="Baby/Todler Walking Independently">
+        <div id="counter-cane" class="counter">0</div>
+        <div>Bengala</div>
+    </div>
+
+    <!-- Cão Guia -->
+    <div class="small-category" onclick="incrementCounter('counter-dog-walking-cane')">
+        <div class="decrement-button" onclick="decrementCounter('counter-dog-walking-cane', event)">-</div>
+        <img src="svg-export/dog.svg" alt="Baby/Todler Being Carried">
+        <div id="counter-dog-walking-cane" class="counter">0</div>
+        <div>Cão Guia</div>
+    </div>
+
+    <!-- Cego -->
+    <div class="small-category" onclick="incrementCounter('counter-blind-cane')">
+        <div class="decrement-button" onclick="decrementCounter('counter-blind-cane', event)">-</div>
+        <img src="svg-export/blind_cane.svg" alt="Up to 5 Walking Independently">
+        <div id="counter-blind-cane" class="counter">0</div>
+        <div>Cego com bengala</div>
+    </div>
+
+    <!-- Male ≤ 12 -->
+    <div class="category" onclick="incrementCounter('counter-male-12')">
+        <div class="decrement-button" onclick="decrementCounter('counter-male-12', event)">-</div>
+        <img src="svg-export/Male 5-14.svg" alt="Male 5-14">
+        <div id="counter-male-12" class="counter">0</div>
+        <div>Homem ≤ 12</div>
+    </div>
+
+    <!-- Female ≤ 12 -->
+    <div class="category" onclick="incrementCounter('counter-female-12')">
+        <div class="decrement-button" onclick="decrementCounter('counter-female-12', event)">-</div>
+        <img src="svg-export/Female 5-14.svg" alt="Female 5-14">
+        <div id="counter-female-12" class="counter">0</div>
+        <div>Mulher ≤ 12</div>
+    </div>
+
+    <!-- Male 12-24 -->
+    <div class="category" onclick="incrementCounter('counter-male-12-24')">
+        <div class="decrement-button" onclick="decrementCounter('counter-male-12-24', event)">-</div>
+        <img src="svg-export/Male 15-24.svg" alt="Male 15-24">
+        <div id="counter-male-12-24" class="counter">0</div>
+        <div>Homem 12-24</div>
+    </div>
+
+    <!-- Female 12-24 -->
+    <div class="category" onclick="incrementCounter('counter-female-12-24')">
+        <div class="decrement-button" onclick="decrementCounter('counter-female-12-24', event)">-</div>
+        <img src="svg-export/Female 15-24.svg" alt="Female 15-24">
+        <div id="counter-female-12-24" class="counter">0</div>
+        <div>Mulher 12-24</div>
+    </div>
+
+    <!-- Male 25-64 -->
+    <div class="category" onclick="incrementCounter('counter-male-25-64')">
+        <div class="decrement-button" onclick="decrementCounter('counter-male-25-64', event)">-</div>
+        <img src="svg-export/Male 25-64.svg" alt="Male 25-64">
+        <div id="counter-male-25-64" class="counter">0</div>
+        <div>Homem 25-64</div>
+    </div>
+
+    <!-- Female 25-64 -->
+    <div class="category" onclick="incrementCounter('counter-female-25-64')">
+        <div class="decrement-button" onclick="decrementCounter('counter-female-25-64', event)">-</div>
+        <img src="svg-export/Female 25-64.svg" alt="Female 25-64">
+        <div id="counter-female-25-64" class="counter">0</div>
+        <div>Mulher 25-64</div>
+    </div>
+
+    <!-- Male 65+ -->
+    <div class="category" onclick="incrementCounter('counter-male-65-plus')">
+        <div class="decrement-button" onclick="decrementCounter('counter-male-65-plus', event)">-</div>
+        <img src="svg-export/Male 65+.svg" alt="Male 65+">
+        <div id="counter-male-65-plus" class="counter">0</div>
+        <div>Homem 65+</div>
+    </div>
+
+    <!-- Female 65+ -->
+    <div class="category" onclick="incrementCounter('counter-female-65-plus')">
+        <div class="decrement-button" onclick="decrementCounter('counter-female-65-plus', event)">-</div>
+        <img src="svg-export/Female 65+.svg" alt="Female 65+">
+        <div id="counter-female-65-plus" class="counter">0</div>
+        <div>Mulher 65+</div>
+    </div>
+
+    <div class="input-section">
+        <div class="time-container">
+            <input type="date" id="date-input" placeholder="Date">
+            <input type="time" id="start-time" placeholder="Start time" min="1" max="24">
+            <input type="time" id="end-time" placeholder="End time" min="1" max="24">
+        </div>
+        <textarea placeholder="Qual o local da contagem?..."></textarea>
+    </div>
+</div>
+
+<button onclick="submitData()">Submit Data</button>
+
+
+<script>
+    function submitData() {
+    // Collect data from counters
+    var data = {
+        'wheelchair': document.getElementById('counter-wheelchair').textContent,
+        'ewheelchair': document.getElementById('counter-e-wheelchair').textContent,
+        'babytoddlersupported': document.getElementById('counter-baby-toddler-supported').textContent,
+        'cane': document.getElementById('counter-cane').textContent,
+        'dogwalkingcane': document.getElementById('counter-dog-walking-cane').textContent,
+        'counterblindcane': document.getElementById('counter-blind-cane').textContent,
+
+        'countermale12': document.getElementById('counter-male-12').textContent,
+        'counterfemale12': document.getElementById('counter-female-12').textContent,
+
+        'countermale1224': document.getElementById('counter-male-12').textContent,
+        'counterfemale1224': document.getElementById('counter-female-12').textContent,
+
+        'countermale2564': document.getElementById('counter-male-25-64').textContent,
+        'counterfemale2564': document.getElementById('counter-female-25-64').textContent,
+
+        'countermale65plus': document.getElementById('counter-male-65-plus').textContent,
+        'counterfemale65plus': document.getElementById('counter-female-65-plus').textContent,
+
+        // Date and Time fields if you need them
+        'date': document.getElementById('date-input').value,
+        'startTime': document.getElementById('start-time').value,
+        'endTime': document.getElementById('end-time').value,
+        'notes': document.querySelector('.input-section textarea').value
+    };
+
+    // Construct the URL for the GET request
+    var scriptUrl = 'https://script.google.com/macros/s/AKfycbz6HFUwIWKn1JpGnnIsXmrwRux6RR5PGRxnC675MnIov9nH5J_1kCI-o9YfBJVEYZ_MRw/exec'; // Replace with your Web App URL
+    var queryString = Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
+    var url = scriptUrl + '?callback=googleDocCallback&' + queryString;
+
+    var script = document.createElement('script');
+    script.src = url;
+    document.head.appendChild(script);
+    document.head.removeChild(script); // Remove the script element once added
+}
+
+// Callback function for the JSONP request
+function googleDocCallback(response) {
+    alert('Data submitted: ' + response.status);
+    // You can add more sophisticated response handling here
+}
+
+    function incrementCounter(counterId) {
+        var counterElement = document.getElementById(counterId);
+        var currentCount = parseInt(counterElement.textContent, 10);
+        counterElement.textContent = currentCount + 1;
+
+        // Highlight the container
+        var container = counterElement.closest('.small-category, .category');
+        if (container) {
+            container.classList.add('highlighted');
+            setTimeout(function() {
+                container.classList.remove('highlighted');
+            }, 310); // Remove highlight after 500 milliseconds
+        }
+
+        updateSum();
+    }
+
+    function decrementCounter(counterId, event) {
+        event.stopPropagation(); // Prevent triggering the increment action
+
+        var counterElement = document.getElementById(counterId);
+        var currentCount = parseInt(counterElement.textContent, 10);
+        if (currentCount > 0) {
+            counterElement.textContent = currentCount - 1;
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>
